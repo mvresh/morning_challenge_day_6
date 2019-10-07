@@ -1,3 +1,5 @@
+import 'dart:math';
+
 class Point {
   int x;
   int y;
@@ -22,11 +24,42 @@ class Point {
 // divisors is 9 which is not equal to 15
 // if 6 is given as input it should print 'true' because Divisors of 6 are 1, 2 and 3. Sum of
 // divisors is 6.
+perfectNumberOrNot(int number){
+  int sum = 0;
+  for(int i = 1; i < number; i++){
+    if(number % i == 0){
+      sum = sum + i;
+    }
+  }
+  if(sum == number){
+    print('$number is perfect number');
+  }
+  else{
+    print('$number is not perfect number');
+  }
+}
 
+boundedRect(List<Point>pointsList){
+
+
+  List<int> listOfX = pointsList.map((Point p) => p.x).toList();
+  List<int> listOfY = pointsList.map((Point p) => p.y).toList();
+
+  int leastX = listOfX.reduce(min);
+  int leastY = listOfY.reduce(min);
+  int largeX = listOfX.reduce(max);
+  int largeY = listOfY.reduce(max);
+
+  return 'Bottom-left: (${leastX}, ${leastY}) Top-right: (${largeX},${largeY})';
+
+}
 void main() {
+
   // Test the function defined above with given List of points
   List<Point> points = [Point(-1, 0), Point(2, 2), Point(1, 3)];
-
+  print(boundedRect(points));
+  perfectNumberOrNot(12);
+  perfectNumberOrNot(6);
   // Test the perfect number function here
 
 }
